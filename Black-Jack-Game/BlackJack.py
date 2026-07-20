@@ -1,20 +1,23 @@
 import random
 
 
-### Function to give a random card from the deck ###
+
 
 def deal_card():
+    
     """return a random card from the deck"""
+    
     cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11, ]
     return random.choice(cards)
 
 
-### Function to calculate the total score from a list of cards ###
+
 
 def calculate_score(cards):
+    
     """Take a List of cards and calculate the score"""
 
-    ### Check for black jack (21 with 2 cards) ###
+    
 
     if sum(cards) == 21 and len(cards) == 2:
         return 0
@@ -27,9 +30,12 @@ def calculate_score(cards):
     return sum(cards)
 
 
-#### Function to compare player and computer scores and decide the winner ###
+
 
 def compare(p_score, c_score):
+
+    ''' compare player and computer scores and decide the winner '''
+    
     if p_score == c_score:
 
         return "Drow"
@@ -47,9 +53,12 @@ def compare(p_score, c_score):
         return "you lose"
 
 
-#### Main function to run one round of the game ###
+
 
 def play_game():
+
+    ''' Main function to run one round of the game '''
+    
     player_cards = []
     computer_cards = []
     computer_score = -1
@@ -57,13 +66,13 @@ def play_game():
     more_card = ""
     is_game_over = False
 
-    ### Give 2 cards to each player at the start ###
+    
 
     for _ in range(2):
         computer_cards.append(deal_card())
         player_cards.append(deal_card())
 
-    ###Player's turn to ask for more cards ###
+    
 
     while not is_game_over:
 
@@ -72,7 +81,7 @@ def play_game():
         print(f"youre cards: {player_cards},and the current score is {player_score}")
         print(f"computer first card is : {computer_cards[0]},")
 
-        ###Check if game should end for player###
+       
 
         if player_score == 0 or computer_score == 0 or player_score > 21:
             is_game_over = True
@@ -89,13 +98,13 @@ def play_game():
 
             is_game_over = True
 
-    ### Computer's turn to draw cards until score is 17 or more ###
+    
 
     while computer_score != 0 and computer_score < 17:
         computer_cards.append(deal_card())
         computer_score = calculate_score(computer_cards)
 
-    ### Show final results ###
+    
 
     print(f"youre cards: {player_cards},and the final score is {player_score}")
     print(f"computer cards: {computer_cards},and the final score is {computer_score}")
@@ -103,7 +112,7 @@ def play_game():
     print(compare(player_score, computer_score))
 
 
-### Keep playing as long as the user says yes ###
+
 
 while input("do you want to play ?(yes or no)").lower() == "yes":
     print("\n" * 20)
